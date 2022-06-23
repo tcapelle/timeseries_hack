@@ -74,7 +74,7 @@ def make_plot(signal, filename):
     return figure1, figure2
 
 
-with open("../code_to_condition.pkl", "rb") as f:
+with open("code_to_condition.pkl", "rb") as f:
     code_to_condition = pickle.load(f)
 
 files = os.listdir("../Training_WFDB")

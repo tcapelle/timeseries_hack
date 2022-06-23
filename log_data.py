@@ -15,10 +15,10 @@ def get_data(file_name):
     Loads the diagnoses from the .hea file.
     """
     file_name = file_name.split(".")[0]
-    with open(f"./Training_WFDB/{file_name}.hea") as f:
+    with open(f"artifacts/PhysioNet_Dataset:v0/{file_name}.hea") as f:
         data = f.readlines()
     
-    signal = loadmat(f"./Training_WFDB/{file_name}.mat")["val"]
+    signal = loadmat(f"artifacts/PhysioNet_Dataset:v0/{file_name}.mat")["val"]
     
     reqd = {}
     reqd["id"] = file_name
@@ -70,7 +70,7 @@ files = os.listdir("./Training_WFDB")
 
 files = [i for i in files if i.endswith(".hea")]
 run = wandb.init(project="PhysioNet_Challenge", entity="timeseriesbois")
-run.use_artifact("manan-goel/PhysioNet_Challenge/PhysioNet_Dataset:v0", type="dataset")
+run.use_artifact("timeseriesbois/PhysioNet_Challenge/PhysioNet_Dataset:v0", type="dataset")
 columns = ["id", "age", "sex", "diagnosis", "signals"]
 table = wandb.Table(columns=columns)
 
